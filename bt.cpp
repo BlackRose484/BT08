@@ -77,6 +77,32 @@ void pad_left(char a[], int n)
     *(*p + n) = '\0';
 }
 
+void trim_left(char a[])
+{
+    int l = Strlen(a);
+    char **p;
+    p = &a;
+    for (int i = 0; i < l; i++)
+    {
+        if (*(*p + i) == ' ')
+        {
+            for (int j = i; j < l; j++)
+            {
+                *(*p + i) = *(*p + i + 1);
+            }
+            i--;
+            l--;
+        }
+    }
+}
+
+void trim_right(char a[])
+{
+    reverse(a);
+    trim_left(a);
+    reverse(a);
+}
+
 int main()
 {
     char s[100];
@@ -84,6 +110,8 @@ int main()
     char *p = s;
     // reverse(s);
     // delete_char(s,'h');
-    pad_left(s, 12);
-    cout << s << endl;
+    // pad_left(s, 12);
+    trim_right(s);
+    cout << s << "j" << endl;
+    system("pause");
 }
